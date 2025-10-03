@@ -1,7 +1,11 @@
 # Real-Time Chat Dashboard
 
 ## Overview
-This is a full-stack real-time chat application where multiple users can send and receive messages instantly. The backend, built with Node.js (Express + Socket.IO), manages user connections, broadcasts messages, and maintains a chat history of the last 50 messages in memory. The frontend, developed with React, provides a dynamic chat interface with real-time updates using WebSockets instead of traditional REST polling. Created on October 03, 2025.
+This is a full-stack real-time chat application where multiple users can send and receive messages instantly. The backend, built with Node.js (Express + Socket.IO), manages user connections, broadcasts messages, and maintains a chat history of the last 50 messages in memory. The frontend, developed with React, provides a dynamic chat interface with real-time updates using WebSockets instead of traditional REST polling.
+- Live messaging
+- Online users list
+- Chat history
+- System notifications for join/leave
 
 ## Setup Instructions
 1. **Prerequisites**:
@@ -46,3 +50,14 @@ This is a full-stack real-time chat application where multiple users can send an
 - **README.md**: This file with setup and execution instructions.
 - **Explanation of Design Choices**: Detailed above, justifying WebSockets over polling and in-memory storage limitations.
 - **Diagram**: ASCII representation of the data flow included above.
+
+flowchart LR
+    User1[User 1: Browser] -->|WebSocket| Server[Node.js + Socket.IO Server]
+    User2[User 2: Browser] -->|WebSocket| Server
+    User3[User 3: Browser] -->|WebSocket| Server
+
+    Server -->|Broadcast Messages| User1
+    Server -->|Broadcast Messages| User2
+    Server -->|Broadcast Messages| User3
+
+    Server --> DB[(Message History)]
