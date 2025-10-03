@@ -1,0 +1,55 @@
+.app-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.chat-container {
+  flex: 3;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.messages {
+  height: 400px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.input-area {
+  display: flex;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.input-area button {
+  padding: 10px 20px;
+}
+
+.users-container {
+  flex: 1;
+  padding: 10px;
+}
+
+.join-container {
+  max-width: 400px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+.join-container input {
+  padding: 10px;
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+.join-container button {
+  padding: 10px 20px;
+}
