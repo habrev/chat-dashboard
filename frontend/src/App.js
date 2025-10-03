@@ -75,7 +75,12 @@ function App() {
         <h1>Chat</h1>
         <div className="messages" ref={messagesEndRef}>
           {messages.map((msg, index) => (
-            <p key={index}><strong>{msg.username}:</strong> {msg.message}</p>
+            <p 
+              key={index} 
+              className={msg.username === username ? 'my-message' : 'other-message'}
+            >
+              <strong>{msg.username === username ? `${msg.username} (You)` : msg.username}:</strong> {msg.message}
+            </p>
           ))}
         </div>
         <div className="input-area">
@@ -92,7 +97,9 @@ function App() {
         <h2>Online Users ({users.length})</h2>
         <ul>
           {users.map((user, index) => (
-            <li key={index}>{user}</li>
+            <li key={index} className={user === username ? 'current-user' : ''}>
+              {user === username ? `${user} (You)` : user}
+            </li>
           ))}
         </ul>
       </div>
