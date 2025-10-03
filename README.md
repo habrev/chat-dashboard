@@ -1,39 +1,48 @@
 # Real-Time Chat Dashboard
 
-A full-stack chat application built with Node.js (Express + Socket.IO) on the backend and React on the frontend. Supports real-time messaging, online user list, and chat history.
-
-## Prerequisites
-
-- Node.js (v18+ recommended)
-- npm
+## Overview
+This is a full-stack real-time chat application where multiple users can send and receive messages instantly. The backend, built with Node.js (Express + Socket.IO), manages user connections, broadcasts messages, and maintains a chat history of the last 50 messages in memory. The frontend, developed with React, provides a dynamic chat interface with real-time updates using WebSockets instead of traditional REST polling. Created on October 03, 2025.
 
 ## Setup Instructions
+1. **Prerequisites**:
+   - Install [Node.js](https://nodejs.org/) (v14 or later) and npm.
+   - Ensure you have a code editor (e.g., VS Code) and a modern browser.
 
-1. **Clone the repository** (or create folders as per the source code structure below).
-
-2. **Backend Setup:**
-   - Navigate to the `backend` folder.
-   - Run `npm install` to install dependencies (express, socket.io).
+2. **Backend Setup**:
+   - Navigate to the `backend` directory: `cd backend`.
+   - Install dependencies: `npm install express socket.io cors`.
    - Start the server: `node server.js`.
-   - The server runs on `http://localhost:3001`.
+   - The server will run on `http://localhost:3001`.
 
-3. **Frontend Setup:**
-   - Navigate to the `frontend` folder.
-   - Run `npm install` to install dependencies (react, react-dom, socket.io-client, etc.).
-   - Start the app: `npm start`.
-   - The app runs on `http://localhost:3000` (default for Create React App).
+3. **Frontend Setup**:
+   - Navigate to the `frontend` directory: `cd frontend`.
+   - Install dependencies: `npm install` (assuming a React project is set up).
+   - Start the development server: `npm start`.
+   - Open `http://localhost:3000` in your browser to access the chat.
 
-4. **Usage:**
-   - Open the app in a browser.
-   - Enter a username to join.
-   - Send messages via the input field.
-   - View real-time updates for messages and online users.
-   - Open multiple tabs/windows to simulate multiple users.
+4. **Running the Application**:
+   - Ensure both the backend (port 3001) and frontend (port 3000) are running.
+   - Open multiple browser tabs to simulate multiple users joining the chat.
+
+## Data Flow Diagram
+
+- **React Chat UI**: Displays an input field for new messages, chat history (auto-updates), and a list of online users.
+- **WebSocket**: Enables real-time communication between client and server.
+- **Node.js Server**: Handles connections, broadcasts messages, and serves the `/history` endpoint.
+- **Message Store (in-memory)**: Stores the last 50 messages.
+
+## Design Choices
+- **WebSockets over REST Polling**: WebSockets were chosen for their persistent, bidirectional communication, offering lower latency and reduced server load compared to REST polling, which would be inefficient for real-time chat.
+- **Socket.IO**: Selected for its ease of use in managing WebSocket connections, broadcasting, and handling user events (e.g., join/disconnect).
+- **In-memory Storage**: Implemented to maintain the last 50 messages for simplicity and speed, suitable for a demo with a small user base.
 
 ## Limitations
-- In-memory storage: Chat history and users are not persisted across server restarts.
-- No authentication: Usernames are self-provided and not validated.
-- Single room: No support for multiple chat rooms.
+- **In-memory Storage**: Chat history is lost upon server restart, lacking persistence. A database (e.g., Redis or MongoDB) would be required for production.
+- **Scalability**: The in-memory store and single server instance may not scale well with a large number of concurrent users, necessitating a distributed system.
+- **No User Authentication**: Users can join with any username without validation, risking conflicts or impersonation.
 
-## Running Tests
-No automated tests included; manually test by connecting multiple clients and verifying broadcasts.
+## Deliverables
+- **Complete Source Code**: Included in `backend/server.js` and `frontend/src/*` (assuming a React setup).
+- **README.md**: This file with setup and execution instructions.
+- **Explanation of Design Choices**: Detailed above, justifying WebSockets over polling and in-memory storage limitations.
+- **Diagram**: ASCII representation of the data flow included above.
