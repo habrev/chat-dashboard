@@ -45,19 +45,3 @@ This is a full-stack real-time chat application where multiple users can send an
 - **Scalability**: The in-memory store and single server instance may not scale well with a large number of concurrent users, necessitating a distributed system.
 - **No User Authentication**: Users can join with any username without validation, risking conflicts or impersonation.
 
-## Deliverables
-- **Complete Source Code**: Included in `backend/server.js` and `frontend/src/*` (assuming a React setup).
-- **README.md**: This file with setup and execution instructions.
-- **Explanation of Design Choices**: Detailed above, justifying WebSockets over polling and in-memory storage limitations.
-- **Diagram**: ASCII representation of the data flow included above.
-
-flowchart LR
-    User1[User 1: Browser] -->|WebSocket| Server[Node.js + Socket.IO Server]
-    User2[User 2: Browser] -->|WebSocket| Server
-    User3[User 3: Browser] -->|WebSocket| Server
-
-    Server -->|Broadcast Messages| User1
-    Server -->|Broadcast Messages| User2
-    Server -->|Broadcast Messages| User3
-
-    Server --> DB[(Message History)]
